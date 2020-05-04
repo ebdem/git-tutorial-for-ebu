@@ -1,0 +1,44 @@
+<input type="text" id="nameInput" placeholder="kullanıcı adınızı giriniz">
+<input type="text" id="passwordInput" placeholder="şifreniz giriniz">
+
+
+<button id="loginButton">Click</button>
+
+
+<p id="responseText"></p>
+
+
+
+<script>
+    // when page opens get request is sent
+    fetch("http://localhost:4444/", {
+        method: "GET"
+    }).then(res => res.json().then(response => {
+        document.getElementById('responseText').innerText = response.desc;
+    }));
+
+    const button = document.getElementById('loginButton');
+    button.addEventListener('click', function () {
+
+        const nameInputValue = document.getElementById('nameInput').value;
+        const passwordInputValue = document.getElementById('passwordInput').value;
+
+        const data = {
+            username: nameInputValue,
+            password: passwordInputValue
+        }
+
+        fetch('http://localhost:4444/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.json()).then(response => {
+            document.getElementById('responseText').innerText = response.desc;
+        })
+
+    })
+
+    // const button = document.getElementById('btn');
+</script>
