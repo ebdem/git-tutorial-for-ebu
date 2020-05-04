@@ -1,2 +1,4 @@
 yeni bri dosya eklendi
 yeni satır eklendi
+
+git repo push
